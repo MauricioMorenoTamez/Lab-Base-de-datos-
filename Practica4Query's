@@ -1,0 +1,637 @@
+USE [Senda]
+GO
+ALTER TABLE [dbo].[Pago] DROP CONSTRAINT [FK__Pago__Tipo__03F0984C]
+GO
+ALTER TABLE [dbo].[Pago] DROP CONSTRAINT [FK__Pago__Moneda__06CD04F7]
+GO
+ALTER TABLE [dbo].[Empleados] DROP CONSTRAINT [FK_Empleados_PuestoEmpleados]
+GO
+ALTER TABLE [dbo].[Camiones] DROP CONSTRAINT [FK__Camiones__Marca__778AC167]
+GO
+ALTER TABLE [dbo].[Camiones] DROP CONSTRAINT [FK__Camiones__Emplea__239E4DCF]
+GO
+ALTER TABLE [dbo].[Boleto] DROP CONSTRAINT [FK__Boleto__PagoId__619B8048]
+GO
+ALTER TABLE [dbo].[Boleto] DROP CONSTRAINT [FK__Boleto__PagoId__37A5467C]
+GO
+ALTER TABLE [dbo].[Boleto] DROP CONSTRAINT [FK__Boleto__ClienteI__60A75C0F]
+GO
+ALTER TABLE [dbo].[Boleto] DROP CONSTRAINT [FK__Boleto__ClienteI__36B12243]
+GO
+ALTER TABLE [dbo].[Boleto] DROP CONSTRAINT [FK__Boleto__CamionId__5EBF139D]
+GO
+ALTER TABLE [dbo].[Boleto] DROP CONSTRAINT [FK__Boleto__BoletoId__5DCAEF64]
+GO
+ALTER TABLE [dbo].[Autobus] DROP CONSTRAINT [FK_Autobus_PuestoEmpleados]
+GO
+ALTER TABLE [dbo].[Autobus] DROP CONSTRAINT [FK_Autobus_Camioneras]
+GO
+ALTER TABLE [dbo].[Asociados] DROP CONSTRAINT [FK__Asociados__Camio__75A278F5]
+GO
+ALTER TABLE [dbo].[Asociados] DROP CONSTRAINT [FK__Asociados__Banco__74AE54BC]
+GO
+/****** Object:  Table [dbo].[Viaje]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[Viaje]
+GO
+/****** Object:  Table [dbo].[TipoDePago]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[TipoDePago]
+GO
+/****** Object:  Table [dbo].[TipoDeMoneda]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[TipoDeMoneda]
+GO
+/****** Object:  Table [dbo].[PuestoEmpleados]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[PuestoEmpleados]
+GO
+/****** Object:  Table [dbo].[Pasajero]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[Pasajero]
+GO
+/****** Object:  Table [dbo].[Pago]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[Pago]
+GO
+/****** Object:  Table [dbo].[Empleados]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[Empleados]
+GO
+/****** Object:  Table [dbo].[Cliente]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[Cliente]
+GO
+/****** Object:  Table [dbo].[Camiones]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[Camiones]
+GO
+/****** Object:  Table [dbo].[Camioneras]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[Camioneras]
+GO
+/****** Object:  Table [dbo].[Boleto]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[Boleto]
+GO
+/****** Object:  Table [dbo].[Bancos]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[Bancos]
+GO
+/****** Object:  Table [dbo].[Autobus]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[Autobus]
+GO
+/****** Object:  Table [dbo].[Asociados]    Script Date: 29/09/2018 10:04:31 ******/
+DROP TABLE [dbo].[Asociados]
+GO
+USE [master]
+GO
+/****** Object:  Database [Senda]    Script Date: 29/09/2018 10:04:31 ******/
+DROP DATABASE [Senda]
+GO
+/****** Object:  Database [Senda]    Script Date: 29/09/2018 10:04:31 ******/
+CREATE DATABASE [Senda]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'Senda', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\Senda.mdf' , SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'Senda_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\Senda_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+ALTER DATABASE [Senda] SET COMPATIBILITY_LEVEL = 120
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [Senda].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [Senda] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [Senda] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [Senda] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [Senda] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [Senda] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [Senda] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [Senda] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [Senda] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [Senda] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [Senda] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [Senda] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [Senda] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [Senda] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [Senda] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [Senda] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [Senda] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [Senda] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [Senda] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [Senda] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [Senda] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [Senda] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [Senda] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [Senda] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [Senda] SET  MULTI_USER 
+GO
+ALTER DATABASE [Senda] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [Senda] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [Senda] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [Senda] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+ALTER DATABASE [Senda] SET DELAYED_DURABILITY = DISABLED 
+GO
+USE [Senda]
+GO
+/****** Object:  Table [dbo].[Asociados]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Asociados](
+	[Bancos] [int] NULL,
+	[Camioneras] [int] NULL,
+	[Limpieza] [varchar](10) NULL,
+	[On_line] [varchar](10) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Autobus]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Autobus](
+	[AutobusId] [int] NOT NULL,
+	[CamioneraId] [int] NOT NULL,
+	[EmpleadoId] [int] NOT NULL,
+	[Capacidad] [int] NOT NULL,
+	[Caracteristicas] [varchar](50) NULL,
+ CONSTRAINT [PK__Camiones__FA60529A74BC54B4] PRIMARY KEY CLUSTERED 
+(
+	[AutobusId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Bancos]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Bancos](
+	[BancosId] [int] NOT NULL,
+	[Nombre] [varchar](10) NULL,
+	[Origen] [varchar](10) NULL,
+	[monedas] [text] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[BancosId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Boleto]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Boleto](
+	[BoletoId] [varchar](5) NULL,
+	[CamionId] [varchar](2) NULL,
+	[NumFolio] [int] NOT NULL,
+	[ClienteId] [int] NULL,
+	[PagoId] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[NumFolio] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Camioneras]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Camioneras](
+	[CamionerasId] [int] NOT NULL,
+	[Nombre] [varchar](10) NULL,
+	[motor] [varchar](10) NULL,
+	[año] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[CamionerasId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Camiones]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Camiones](
+	[ModeloId] [varchar](2) NOT NULL,
+	[EmpleadoId] [int] NULL,
+	[capacidad] [int] NOT NULL,
+	[Marca] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ModeloId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Cliente]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Cliente](
+	[ClienteId] [int] NOT NULL,
+	[Nombre] [varchar](10) NULL,
+	[Apellido] [varchar](10) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ClienteId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Empleados]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Empleados](
+	[EmpleadoId] [int] NOT NULL,
+	[Nombre] [varchar](10) NULL,
+	[Apellido] [varchar](10) NULL,
+	[Edad] [varchar](10) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[EmpleadoId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Pago]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Pago](
+	[PagoId] [int] NOT NULL,
+	[Tipo] [int] NULL,
+	[Moneda] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[PagoId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Pasajero]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Pasajero](
+	[PasajeroId] [int] NOT NULL,
+	[Nombre] [varchar](20) NOT NULL,
+	[Apellidos] [varchar](30) NOT NULL,
+	[TipoPasajero] [varchar](10) NOT NULL,
+	[Telefono] [int] NULL,
+	[Correo] [varchar](30) NULL,
+ CONSTRAINT [PK__Cliente__71ABD0872B222975] PRIMARY KEY CLUSTERED 
+(
+	[PasajeroId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[PuestoEmpleados]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[PuestoEmpleados](
+	[EmpleadoId] [int] NOT NULL,
+	[Puesto] [varchar](25) NOT NULL,
+ CONSTRAINT [PK_PuestoEmpleados] PRIMARY KEY CLUSTERED 
+(
+	[EmpleadoId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[TipoDeMoneda]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[TipoDeMoneda](
+	[TipoMonedaId] [int] NOT NULL,
+	[TipoDeMon] [varchar](2) NOT NULL,
+	[Pais] [varchar](10) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[TipoMonedaId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[TipoDePago]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[TipoDePago](
+	[TipoId] [int] NOT NULL,
+	[TipoDP] [varchar](10) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[TipoId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Viaje]    Script Date: 29/09/2018 10:04:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Viaje](
+	[id] [varchar](5) NOT NULL,
+	[Destino] [varchar](10) NOT NULL,
+	[Origen] [varchar](10) NOT NULL,
+	[Ida] [datetime] NOT NULL,
+	[Vuelta] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (1, N'Santander', N'Monterrey', N'Pesos')
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (2, N'Bancomer', N'Monterrey', N'Pesos')
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (3, N'American ', N'USA', N'Dolar')
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (4, N'Western ', N'USA', N'Dolar')
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (6, N'Suize', N'Monterrey', N'Pesos')
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (7, N'SantanderE', N'Monterrey', N'Pesos')
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (8, N'SantanderO', N'Monterrey', N'Pesos')
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (9, N'BanamexE', N'Torreon', N'Pesos')
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (10, N'BanamexO', N'Monterrey', N'Pesos')
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (11, N'American ', N'USA', N'Dolar')
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (12, N'Santander2', N'Monterrey2', N'Pesos')
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (13, N'Santander3', N'Monterrey3', N'Pesos')
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (14, N'Santander4', N'Monterrey4', N'Pesos')
+GO
+INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (15, N'Santander5', N'Monterrey5', N'Pesos')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (1, N'Anonimo', N'Moreno')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (2, N'Mauricio2', N'Moreno2')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (3, N'Mauricio3', N'Moreno3')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (4, N'Mauricio4', N'Moreno4')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (5, N'Mauricio5', N'Moreno5')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (6, N'Mauricio6', N'Moreno6')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (7, N'Mauricio7', N'Moreno7')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (8, N'Mauricio8', N'Moreno8')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (9, N'Mauricio9', N'Moreno9')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (10, N'Mauricio10', N'Moreno10')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (11, N'Mauricio11', N'Moreno11')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (12, N'Pedro', N'Moreno12')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (13, N'Mauricio13', N'Moreno13')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (14, N'Mauricio14', N'Moreno14')
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (1, 1, 1)
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (2, 2, 1)
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (3, 3, 3)
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (4, 7, 7)
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (6, 3, 3)
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (7, 6, 7)
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (8, 7, 3)
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (9, 6, 1)
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (10, 8, 5)
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (11, 3, 3)
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (12, 4, 8)
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (13, 8, 7)
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (14, 3, 1)
+GO
+INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (215, 6, 4)
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (1, N'DL', N'USA')
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (3, N'DL', N'USA22')
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (4, N'EU', N'España2')
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (5, N'DL', N'USA3')
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (6, N'EU', N'España3')
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (7, N'DL', N'USA4')
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (8, N'EU', N'Noruega')
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (9, N'DL', N'USA5')
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (10, N'EU', N'España5')
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (11, N'DL', N'USA6')
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (12, N'EU', N'España6')
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (13, N'DL', N'USA7')
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (14, N'EU', N'España7')
+GO
+INSERT [dbo].[TipoDeMoneda] ([TipoMonedaId], [TipoDeMon], [Pais]) VALUES (15, N'DL', N'USA8')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (1, N'Efectivo')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (2, N'Elect')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (3, N'Cheque')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (4, N'Web')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (6, N'Elect3')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (7, N'Web2')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (8, N'Efectivo3')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (9, N'Elect4')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (10, N'Web3')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (11, N'Web4')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (12, N'Elect5')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (13, N'Web5')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (14, N'Web6')
+GO
+INSERT [dbo].[TipoDePago] ([TipoId], [TipoDP]) VALUES (15, N'Efectivo4')
+GO
+ALTER TABLE [dbo].[Asociados]  WITH CHECK ADD FOREIGN KEY([Bancos])
+REFERENCES [dbo].[Bancos] ([BancosId])
+GO
+ALTER TABLE [dbo].[Asociados]  WITH CHECK ADD FOREIGN KEY([Camioneras])
+REFERENCES [dbo].[Camioneras] ([CamionerasId])
+GO
+ALTER TABLE [dbo].[Autobus]  WITH CHECK ADD  CONSTRAINT [FK_Autobus_Camioneras] FOREIGN KEY([CamioneraId])
+REFERENCES [dbo].[Camioneras] ([CamionerasId])
+GO
+ALTER TABLE [dbo].[Autobus] CHECK CONSTRAINT [FK_Autobus_Camioneras]
+GO
+ALTER TABLE [dbo].[Autobus]  WITH CHECK ADD  CONSTRAINT [FK_Autobus_PuestoEmpleados] FOREIGN KEY([EmpleadoId])
+REFERENCES [dbo].[PuestoEmpleados] ([EmpleadoId])
+GO
+ALTER TABLE [dbo].[Autobus] CHECK CONSTRAINT [FK_Autobus_PuestoEmpleados]
+GO
+ALTER TABLE [dbo].[Boleto]  WITH CHECK ADD FOREIGN KEY([BoletoId])
+REFERENCES [dbo].[Viaje] ([id])
+GO
+ALTER TABLE [dbo].[Boleto]  WITH CHECK ADD FOREIGN KEY([CamionId])
+REFERENCES [dbo].[Camiones] ([ModeloId])
+GO
+ALTER TABLE [dbo].[Boleto]  WITH CHECK ADD  CONSTRAINT [FK__Boleto__ClienteI__36B12243] FOREIGN KEY([ClienteId])
+REFERENCES [dbo].[Pasajero] ([PasajeroId])
+GO
+ALTER TABLE [dbo].[Boleto] CHECK CONSTRAINT [FK__Boleto__ClienteI__36B12243]
+GO
+ALTER TABLE [dbo].[Boleto]  WITH CHECK ADD FOREIGN KEY([ClienteId])
+REFERENCES [dbo].[Cliente] ([ClienteId])
+GO
+ALTER TABLE [dbo].[Boleto]  WITH CHECK ADD  CONSTRAINT [FK__Boleto__PagoId__37A5467C] FOREIGN KEY([PagoId])
+REFERENCES [dbo].[Pago] ([PagoId])
+GO
+ALTER TABLE [dbo].[Boleto] CHECK CONSTRAINT [FK__Boleto__PagoId__37A5467C]
+GO
+ALTER TABLE [dbo].[Boleto]  WITH CHECK ADD FOREIGN KEY([PagoId])
+REFERENCES [dbo].[Pago] ([PagoId])
+GO
+ALTER TABLE [dbo].[Camiones]  WITH CHECK ADD FOREIGN KEY([EmpleadoId])
+REFERENCES [dbo].[Empleados] ([EmpleadoId])
+GO
+ALTER TABLE [dbo].[Camiones]  WITH CHECK ADD FOREIGN KEY([Marca])
+REFERENCES [dbo].[Camioneras] ([CamionerasId])
+GO
+ALTER TABLE [dbo].[Empleados]  WITH CHECK ADD  CONSTRAINT [FK_Empleados_PuestoEmpleados] FOREIGN KEY([EmpleadoId])
+REFERENCES [dbo].[PuestoEmpleados] ([EmpleadoId])
+GO
+ALTER TABLE [dbo].[Empleados] CHECK CONSTRAINT [FK_Empleados_PuestoEmpleados]
+GO
+ALTER TABLE [dbo].[Pago]  WITH CHECK ADD FOREIGN KEY([Moneda])
+REFERENCES [dbo].[TipoDeMoneda] ([TipoMonedaId])
+GO
+ALTER TABLE [dbo].[Pago]  WITH CHECK ADD FOREIGN KEY([Tipo])
+REFERENCES [dbo].[TipoDePago] ([TipoId])
+GO
+USE [master]
+GO
+ALTER DATABASE [Senda] SET  READ_WRITE 
+GO
