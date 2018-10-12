@@ -1,0 +1,57 @@
+use senda
+--Subconsultas--
+select * from TipoDeMoneda where TipoMonedaId in ( select TipoMonedaId from TipoDeMoneda where TipoDeMon = 'DL' )
+select * from Pago where Moneda in ( select TipoMonedaId from TipoDeMoneda where TipoDeMon = 'EU' )
+
+--5 Vistas--
+create view Monedas 
+as 
+select PagoId, Moneda from Pago where PagoId > 2
+
+select * from Monedas order by Moneda
+
+create view TipoMonedaDL
+as
+select TipoDeMon, Pais from TipoDeMoneda where TipoDeMon = 'DL'
+
+select * from TipoMonedaDL
+
+create view NombreCompleto
+as
+select Nombre + Apellido as NombreCompleto from Cliente
+
+Alter view NombreCompleto
+as
+select Nombre, Nombre + Apellido as NombreCompleto from Cliente
+
+select a.ClienteId, b.NombreCompleto from NombreCompleto as b, Cliente as a 
+where a.Nombre like b.Nombre
+
+create view Pago_y_Tipo
+as
+select PagoId, Tipo, Moneda,TipoDeMon from Pago inner join TipoDeMoneda on Moneda = TipoMonedaId
+
+select * from Pago_y_Tipo where TipoDeMon = 'DL' 
+
+create view CuantosDeMonedasPorTipo
+as
+select count(Moneda) as ConteoMoneda, Tipo from Pago group by Tipo
+
+select * from CuantosDeMonedasPorTipo 
+
+--Consultas Dinamica--
+declare @Moned varchar(10)
+declare @Comando varchar(1000)
+set @Moned = '''EU'''
+set @Comando = N'select * from Pago inner join TipoDeMoneda on Moneda = TipoMonedaId and TipoDeMon = ' + @Moned
+execute (@Comando)
+
+declare @Monedaa varchar(10)
+set @Monedaa = 'EU'
+select * from Pago inner join TipoDeMoneda on Moneda = TipoMonedaId and TipoDeMon = @Monedaa
+
+declare @Simple varchar(30)
+declare @Coman varchar(1000)
+set @Simple = 'Pago'
+set @Coman = N'select * from ' + @Simple
+exec (@Coman)
