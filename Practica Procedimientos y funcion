@@ -1,0 +1,55 @@
+use Senda
+
+--Procedimiento Script--
+create procedure CantidadMoneda
+@monedaC varchar(5)
+as
+select count(PagoId) as Cantidad_Tipo_DL, Moneda from Pago inner join TipoDeMoneda on Moneda 
+= TipoMonedaId where TipoDeMon = @monedaC group by Moneda 
+exec CantidadMoneda 'DL'
+
+--Procedimientos Almacenados--
+create procedure Moneda
+@moneda varchar(5)
+as
+select * from TipoDeMoneda where TipoDeMon = @moneda
+exec Moneda 'DL'
+
+create procedure PagoConMoneda
+@monedaT varchar(5)
+as
+select PagoId, Tipo, Moneda,TipoDeMon from Pago inner join TipoDeMoneda on Moneda = TipoMonedaId and TipoDeMon = @monedaT
+exec PagoConMoneda 'EU'
+exec PagoConMoneda 'DL'
+
+create procedure BancosOrigen
+@origen varchar(15)
+as
+select Nombre, Origen from Bancos where Origen = @origen
+exec BancosOrigen 'Monterrey'
+
+alter procedure BancosOrigen
+@origen varchar(15)
+as
+select Nombre, Origen from Bancos where Origen like @origen
+
+create procedure CantidadPorMoneda
+@monedaB varchar(10)
+as
+select Origen, count(BancosId) as MonedaCantidad from Bancos where monedas like @monedaB group by Origen
+exec CantidadPorMoneda 'Pesos'
+exec CantidadPorMoneda 'Dolar'
+
+create procedure BuscadorPorId
+@id int
+as 
+select BancosId, Nombre + Origen as Nombre_Origen, monedas from Bancos where BancosId = @id
+exec BuscadorPorId 7
+
+--Funcion--
+create function FuncionPrueba (@id2 int)
+returns table
+as
+return 
+select * from Bancos where BancosId = @id2
+select * from FuncionPrueba (2)
