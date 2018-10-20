@@ -1,4 +1,4 @@
-use Senda
+use Proyecto_BD
 
 --Procedimiento Script--
 create procedure CantidadMoneda
