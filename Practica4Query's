@@ -466,31 +466,33 @@ INSERT [dbo].[Bancos] ([BancosId], [Nombre], [Origen], [monedas]) VALUES (15, N'
 GO
 INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (1, N'Anonimo', N'Moreno')
 GO
-INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (2, N'Mauricio2', N'Moreno2')
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (2, N'Mauricio', N'Moreno')
 GO
-INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (3, N'Mauricio3', N'Moreno3')
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (3, N'Pedro', N'Paramo')
 GO
-INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (4, N'Mauricio4', N'Moreno4')
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (4, N'Javier', N'Gonzales')
 GO
-INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (5, N'Mauricio5', N'Moreno5')
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (5, N'Mauricio', N'Luna')
 GO
-INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (6, N'Mauricio6', N'Moreno6')
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (6, N'Anonimo', N'Moreno')
 GO
-INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (7, N'Mauricio7', N'Moreno7')
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (7, N'Isaac', N'Flores')
 GO
-INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (8, N'Mauricio8', N'Moreno8')
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (8, N'Audrey', N'Loza')
 GO
-INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (9, N'Mauricio9', N'Moreno9')
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (9, N'Daniela', N'Alvarado')
 GO
-INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (10, N'Mauricio10', N'Moreno10')
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (10, N'Karla', N'balleza')
 GO
-INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (11, N'Mauricio11', N'Moreno11')
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (11, N'Julio', N'Profe')
 GO
-INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (12, N'Pedro', N'Moreno12')
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (12, N'Maujhalo', N'Halo')
 GO
-INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (13, N'Mauricio13', N'Moreno13')
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (13, N'Javier', N'Martinez')
 GO
-INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (14, N'Mauricio14', N'Moreno14')
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (14, N'Julio', N'Maestro')
+GO
+INSERT [dbo].[Cliente] ([ClienteId], [Nombre], [Apellido]) VALUES (15, N'Loco', N'Adams')
 GO
 INSERT [dbo].[Pago] ([PagoId], [Tipo], [Moneda]) VALUES (1, 1, 1)
 GO
