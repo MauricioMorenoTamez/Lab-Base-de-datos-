@@ -1,4 +1,4 @@
-use Proyecto_BD
+use Proyecto_BDComplete
 
 --Selects con as
 select TipoDeMon + ' ' + Pais as TipoYpais from TipoDeMoneda
