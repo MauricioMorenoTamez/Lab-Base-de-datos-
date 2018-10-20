@@ -1,15 +1,14 @@
-use Senda
-select * from Pago
+use Proyecto_BD
 
 --Selects con as
 select TipoDeMon + ' ' + Pais as TipoYpais from TipoDeMoneda
 select TipoMonedaId as Id,TipoDeMon + ' ' + Pais as TipoYpais  from TipoDeMoneda
 select Nombre + ' ' + Apellido as NombreCompleto from Cliente
-select ClienteId as Id, Nombre + ' ' + Apellido as NombreCompleto from Cliente
+select Id_Cliente as Id, Nombre + ' ' + Apellido as NombreCompleto from Cliente
 select Apellido + ' ' + Nombre as ApellidoNombre from Cliente
 
 --Selects con where
-select Nombre from Cliente where ClienteId = 4
+select Nombre from Cliente where Id_Cliente = 4
 select Apellido from Cliente where Nombre = 'Mauricio2'
 select TipoDeMon as Moneda from TipoDeMoneda where Pais = 'USA'
 select Pais from TipoDeMoneda where TipoDeMon = 'DL' order by TipoMonedaId desc
@@ -30,4 +29,4 @@ select * from Pago left join TipoDePago on Tipo = TipoId
 
 --Joins Con Group By
 select avg(Moneda) as PromMoneda from Pago inner join TipoDeMoneda on Moneda = TipoMonedaId  group by Tipo 
-select sum(Tipo) as SumaTipo from Pago inner join TipoDeMoneda on Moneda = TipoMonedaId  group by Tipo
+select sum(Tipo) as SumaTipo from Pago inner join TipoDeMoneda on Moneda = TipoMonedaId group by Tipo
