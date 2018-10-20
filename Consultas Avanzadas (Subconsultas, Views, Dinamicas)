@@ -1,4 +1,4 @@
-use Proyecto_BD
+use Proyecto_BDComplete
 
 --Subconsultas--
 select * from TipoDeMoneda where TipoMonedaId in ( select TipoMonedaId from TipoDeMoneda where TipoDeMon = 'DL' )
