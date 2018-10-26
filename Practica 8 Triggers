@@ -1,0 +1,24 @@
+use Proyecto_BDComplete
+
+create trigger RecordatorioBanco
+on Bancos 
+AFTER INSERT AS 
+Begin
+select * from Bancos
+end
+
+create trigger Actualizacion
+on Bancos
+after update as
+begin
+select BancosId,Nombre,Origen,monedas,Nivel,n.Descripcion,Regimiento,r.Descripcion 
+from Bancos inner join NivelB n on Id_Nivel = Nivel inner join Regimiento r on Id_Regimiento = Regimiento
+end
+
+create trigger Nivelado_Regimiento
+on Bancos
+for delete as
+begin
+select n.Id_Nivel, n.Descripcion,r.Id_Regimiento, r.Descripcion from NivelB n, Regimiento r
+select * from Bancos
+end
